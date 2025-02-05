@@ -211,8 +211,11 @@ To add a new row below the last row in the Google Sheets document, you can use t
 ```javascript
 function addNewRow() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("COURSERA");
-  var lastRow = sheet.getLastRow(); // Get the last row with data
-  sheet.insertRowAfter(lastRow); // Insert a new row after the last populated row
+  var lastRow = sheet.getLastRow();
+  sheet.insertRowAfter(lastRow);
+  
+  var range = sheet.getRange(lastRow + 1, 1, 1, sheet.getLastColumn());
+  range.clearDataValidations();
 }
 ```
 
