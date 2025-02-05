@@ -181,15 +181,15 @@ function setCourseType() {
   // Get the current active row
   const currentRow = sheet.getLastRow();
 
-  // Dynamically find the column index for "Course Type" and the column for H (assumed "Hours" or similar)
+  // Dynamically find the column index for "Course Type" and the column for "No. of Modules"
   const courseTypeColumn = headers.indexOf('Course Type') + 1;
-  const hoursColumn = headers.indexOf('No. of Modules') + 1;
+  const modulesCountColumn = headers.indexOf('No. of Modules') + 1;
 
-  // Get the corresponding column letter for the "Hours" column
-  const hoursColumnLetter = String.fromCharCode(64 + hoursColumn);  // 64 + 8 = 72 -> 'H'
+  // Get the corresponding column letter for the "No. of Modules" column
+  const modulesCountColumnLetter = String.fromCharCode(64 + modulesCountColumn);
 
   // Construct the formula dynamically
-  const formula = `=IF(${hoursColumnLetter}${currentRow}<>0,"MODULAR","PROJECT/GUIDED PROJECT")`;
+  const formula = `=IF(${modulesCountColumnLetter}${currentRow}<>0,"MODULAR","PROJECT/GUIDED PROJECT")`;
 
   // Apply the formula to the "Course Type" cell
   sheet.getRange(currentRow, courseTypeColumn).setFormula(formula);
