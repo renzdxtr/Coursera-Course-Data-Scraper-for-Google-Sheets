@@ -195,12 +195,12 @@ function setCourseType() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('COURSERA');
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   const currentRow = sheet.getLastRow();
+
   const courseTypeColumn = headers.indexOf('Course Type') + 1;
-  const modulesColumn = headers.indexOf('No. of Modules') + 1;
+  const modulesCountColumn = headers.indexOf('No. of Modules') + 1;
+  const modulesCountColumnLetter = String.fromCharCode(64 + modulesCountColumn);
 
-  const modulesColumnLetter = String.fromCharCode(64 + modulesColumn);
-  const formula = `=IF(${modulesColumnLetter}${currentRow}<>0,"MODULAR","PROJECT/GUIDED PROJECT")`;
-
+  const formula = `=IF(${modulesCountColumnLetter}${currentRow}<>0,"MODULAR","PROJECT/GUIDED PROJECT")`;
   sheet.getRange(currentRow, courseTypeColumn).setFormula(formula);
 }
 ```
