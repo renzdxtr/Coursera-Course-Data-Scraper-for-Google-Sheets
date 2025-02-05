@@ -199,4 +199,8 @@ function addNewRow() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("COURSERA");
   var lastRow = sheet.getLastRow(); // Get the last row with data
   sheet.insertRowAfter(lastRow); // Insert a new row after the last populated row
+  
+  // Clear the data validation (dropdown) from the new row
+  var range = sheet.getRange(lastRow + 1, 1, 1, sheet.getLastColumn());
+  range.clearDataValidations(); // Remove data validation from the new row
 }
